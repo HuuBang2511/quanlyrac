@@ -46,9 +46,57 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
 </style>
 
 <div class="dashboard-container">
-    <!-- Bản đồ GIS -->
-   
-    <!-- Biểu đồ -->
+    <div class="row g-4 mb-4">
+        <div class="col-sm-6 col-xl-4">
+            <div class="block block-themed stat-card text-center">
+                <div class="block-header bg-primary-dark d-flex align-items-center justify-content-center">
+                    <i class="fas fa-gauge text-white fa-2x me-2"></i>
+                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom rác đã xác thực không cập nhật</h3>
+                </div>
+                <div class="block-content p-4">
+                    <div class="fs-1 fw-bold text-primary"><?= $count['diemthugom1'] ?></div>
+                    <a href="#"
+                        class="btn btn-outline-primary mt-2">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-4">
+            <div class="block block-themed stat-card text-center">
+                <div class="block-header bg-success d-flex align-items-center justify-content-center">
+                    <i class="fas fa-gauge text-white fa-2x me-2"></i>
+                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom rác đã xác thực có cập nhật</h3>
+                </div>
+                <div class="block-content p-4">
+                    <div class="fs-1 fw-bold text-success"><?= $count['diemthugom2'] ?></div>
+                    <a href="#"
+                        class="btn btn-outline-success mt-2">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-4">
+            <div class="block block-themed stat-card text-center">
+                <div class="block-header bg-warning d-flex align-items-center justify-content-center">
+                    <i class="fas fa-gauge text-white fa-2x me-2"></i>
+                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom rác chưa xác thực</h3>
+                </div>
+                <div class="block-content p-4">
+                    <div class="fs-1 fw-bold text-warning"><?= $count['diemthugom3'] ?></div>
+                    <a href="#"
+                        class="btn btn-outline-warning mt-2">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block block-themed">
+            <div class="block-header">
+                <h3>Thống kê biểu đồ</h3>
+            </div>
+            <div class="block-content">
+                <div class="row">
+
+                </div>
+            </div>
+        </div>  
 </div>
 
 

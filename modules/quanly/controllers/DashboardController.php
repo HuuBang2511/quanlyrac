@@ -5,35 +5,38 @@ namespace app\modules\quanly\controllers;
 
 
 use app\modules\quanly\base\QuanlyBaseController;
-use app\modules\quanly\models\aphu\DonghoKh;
-use app\modules\quanly\models\aphu\NhamayNuoc;
-use app\modules\quanly\models\aphu\VanMangluoi;
-use app\modules\quanly\models\capnuocgd\GdDonghoKhGd;
-use app\modules\quanly\models\capnuocgd\GdDonghoTongGd;
-use app\modules\quanly\models\capnuocgd\GdOngcai;
-use app\modules\quanly\models\capnuocgd\GdVanphanphoi;
-use app\modules\quanly\models\Ktvhxh;
-use app\modules\quanly\models\aphu\OngPhanphoi;
-use app\modules\quanly\models\capnuocgd\GdSuco;
-use app\modules\quanly\models\capnuocgd\GdTrambom;
-use app\modules\quanly\models\capnuocgd\GdTramcuuhoa;
-use app\modules\quanly\models\capnuocgd\GdHamkythuat;
-use app\modules\quanly\models\capnuocgd\DMA;
+use app\modules\quanly\models\Diemthugom;
 use Yii;
 
 class DashboardController extends QuanlyBaseController
 {
     public function actionIndex()
     {
-        
+        $count['diemthugom1'] = Diemthugom::find()->where(['status' => 1])->count();
+        $count['diemthugom2'] = Diemthugom::find()->where(['status' => 2])->count();
+        $count['diemthugom3'] = Diemthugom::find()->where(['status' => 3])->count();
 
+        $statistic['phuongxa'] = Diemthugom::find()->select('count(ward) as value, ward as name')->groupBy('ward')->asArray()->all();
+        $statistic['loaidiemthugom'] = [
+            [
+                'value' => $count['diemthugom1'],
+                'name' => 'Điểm thu gom rác đã xác thực không cập nhật'
+            ],
+            [
+                'value' => $count['diemthugom2'],
+                'name' => 'Điểm thu gom rác đã xác thực có cập nhật'
+            ],
+            [
+                'value' => $count['diemthugom3'],
+                'name' => 'Điểm thu gom rác chưa xác thực'
+            ],
+        ];
 
-        //dd(($sovanDma));
-
-
+        //dd($statistic);
 
         return $this->render('index', [
-            
+            'count' => $count,
+            'statistic' => $statistic,
         ]);
     }
 
