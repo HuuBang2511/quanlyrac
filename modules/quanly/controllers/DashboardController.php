@@ -12,11 +12,13 @@ class DashboardController extends QuanlyBaseController
 {
     public function actionIndex()
     {
-        $count['diemthugom1'] = Diemthugom::find()->where(['status' => 1])->count();
-        $count['diemthugom2'] = Diemthugom::find()->where(['status' => 2])->count();
-        $count['diemthugom3'] = Diemthugom::find()->where(['status' => 3])->count();
+        $count['diemthugom1'] = Diemthugom::find()->where(['status' => 1])->andWhere('geom is not null')->count();
+        $count['diemthugom2'] = Diemthugom::find()->where(['status' => 2])->andWhere('geom is not null')->count();
+        $count['diemthugom3'] = Diemthugom::find()->where(['status' => 3])->andWhere('geom is not null')->count();
 
-        $statistic['phuongxa'] = Diemthugom::find()->select('count(ward) as value, ward as name')->groupBy('ward')->asArray()->all();
+        $statistic['phuongxa'] = Diemthugom::find()->select('count(ward) as value, ward as name')
+        ->where('geom is not null')
+        ->groupBy('ward')->asArray()->all();
         $statistic['loaidiemthugom'] = [
             [
                 'value' => $count['diemthugom1'],

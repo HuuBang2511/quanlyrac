@@ -12,7 +12,7 @@ return [
     ],
     'siteName' => 'Hệ thống quản lý rác',
     'loginPage' => [
-        'logoUrl' => '/resources/images/logocamau.jpg',
+        'logoUrl' => '/resources/images/logo_qlrac.png',
         'backgroundUrl' => '/resources/images/banner_bg.jpg'
     ],
     'adminSidebar' => [[

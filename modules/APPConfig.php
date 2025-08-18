@@ -112,13 +112,13 @@ class APPConfig
 //             ],
 //         ],
         'giadinh' => [
-            // [
-            //     'name' => 'Data Logger',
-            //     'icon' => 'fa fa-list',
-            //     'url' => 'quanly/capnuocgd/gd-data-logger',
-            //     'key'=>'quanly.capnuocgd/gd-data-logger.index',
-            //     'hasChild' => false,
-            // ],
+            [
+                'name' => 'Thống kê theo không gian',
+                'icon' => 'fa fa-list',
+                'url' => 'quanly/diemthugom/thongke-khonggian',
+                'key'=>'quanly.diemthugom.thongke-khonggian',
+                'hasChild' => false,
+            ],
             // [
             //     'name' => 'Đồng hồ KH',
             //     'icon' => 'fa fa-list',

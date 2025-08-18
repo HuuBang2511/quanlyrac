@@ -43,6 +43,16 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
     height: 400px;
     border-radius: 10px;
 }
+
+.chartStyle {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+}
+
+#chart-none{
+    font-family: Roboto !important;
+}
 </style>
 
 <div class="dashboard-container">
@@ -51,7 +61,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
             <div class="block block-themed stat-card text-center">
                 <div class="block-header bg-primary-dark d-flex align-items-center justify-content-center">
                     <i class="fas fa-gauge text-white fa-2x me-2"></i>
-                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom rác đã xác thực không cập nhật</h3>
+                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom đã xác thực không cập nhật</h3>
                 </div>
                 <div class="block-content p-4">
                     <div class="fs-1 fw-bold text-primary"><?= $count['diemthugom1'] ?></div>
@@ -64,7 +74,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
             <div class="block block-themed stat-card text-center">
                 <div class="block-header bg-success d-flex align-items-center justify-content-center">
                     <i class="fas fa-gauge text-white fa-2x me-2"></i>
-                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom rác đã xác thực có cập nhật</h3>
+                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom đã xác thực có cập nhật</h3>
                 </div>
                 <div class="block-content p-4">
                     <div class="fs-1 fw-bold text-success"><?= $count['diemthugom2'] ?></div>
@@ -77,7 +87,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
             <div class="block block-themed stat-card text-center">
                 <div class="block-header bg-warning d-flex align-items-center justify-content-center">
                     <i class="fas fa-gauge text-white fa-2x me-2"></i>
-                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom rác chưa xác thực</h3>
+                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom chưa xác thực</h3>
                 </div>
                 <div class="block-content p-4">
                     <div class="fs-1 fw-bold text-warning"><?= $count['diemthugom3'] ?></div>
@@ -88,16 +98,100 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \y
         </div>
     </div>
     <div class="block block-themed">
-            <div class="block-header">
-                <h3>Thống kê biểu đồ</h3>
-            </div>
-            <div class="block-content">
-                <div class="row">
-
+        <div class="block-header">
+            <h3>Thống kê biểu đồ</h3>
+        </div>
+        <div class="block-content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php if(isset($statistic['phuongxa']) && count($statistic['phuongxa']) > 0): ?>
+                        <div id="piePhuongxa" class="chartStyle"></div>
+                    <?php else: ?>
+                    <div class="text-center" id="chart-none">
+                        <h4>Không có dữ liệu !</h4>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <div class="col-lg-6">
+                    <?php if(isset($statistic['loaidiemthugom']) && count($statistic['loaidiemthugom']) > 0): ?>
+                        <div id="pieLoaidiemthugom" class="chartStyle"></div>
+                    <?php else: ?>
+                    <div class="text-center" id="chart-none">
+                        <h4>Không có dữ liệu !</h4>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
-        </div>  
+        </div>
+    </div>  
 </div>
+
+<script type="module">
+    $(document).ready(function () {
+        <?php if(isset($statistic['phuongxa']) && count($statistic['phuongxa']) > 0): ?>
+        initPieChart('piePhuongxa', 'Thống kê điểm thu gom theo phường', null, <?= json_encode($statistic['phuongxa'])?>,'Điểm thu gom')
+        <?php endif; ?>
+        <?php if(isset($statistic['loaidiemthugom']) && count($statistic['loaidiemthugom']) > 0): ?>
+        initPieChart('pieLoaidiemthugom', 'Thống kê điểm thu gom theo loại', null, <?= json_encode($statistic['loaidiemthugom'])?>,'Điểm thu gom')
+        <?php endif; ?>
+    });
+
+    function initPieChart(id, title, label, data, unit) {
+        var chartDom = document.getElementById(id);
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            title: {
+                text: title,
+                left: 'center',
+                textStyle: {
+                    fontFamily: 'Roboto'
+                }
+            },
+            textStyle: {
+                fontFamily: 'Roboto',
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/> <b>{b}</b>:  {c} ({d}%)',
+                textStyle: {
+                    fontFamily: 'Roboto'
+                }
+            },
+            label: {
+            formatter: '{b}:{c}',
+            position: 'inside',
+            textStyle: {
+                fontFamily: 'Roboto',
+                fontSize: '8px'
+            }
+        },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                top: 'bottom',
+            },
+            series: [
+                {
+                    name: unit,
+                    type: 'pie',
+                    radius: '50%',
+                    data: data,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+    }
+</script>
 
 
 

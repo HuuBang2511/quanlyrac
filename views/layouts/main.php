@@ -16,7 +16,7 @@ UserAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 
 <head>
-    <link rel="shortcut icon" href="<?= Yii::$app->homeUrl ?>resources/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= Yii::$app->homeUrl ?>resources/images/backgrounds/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="192x192" href="<?= Yii::$app->homeUrl ?>resources/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="<?= Yii::$app->homeUrl ?>resources/images/favicon.ico">
     <meta charset="utf-8">

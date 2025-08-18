@@ -330,9 +330,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const MAP_CENTER = [10.761978, 106.777679];
     const MAP_ZOOM = 11;
     const layerConfig = [
-        { id: 'wmsDiemthugom1Layer', wmsName: 'qlrac:contracts_1', displayName: 'Điểm thu gom rác đã xác thực không cập nhật', defaultVisible: true, zIndex: 750, popupFields: {'address': 'Địa chỉ', 'ward': 'Phường', 'street': 'Đường', 'area': 'Khu vực'} },
-        { id: 'wmsDiemthugom2Layer', wmsName: 'qlrac:contracts_2', displayName: 'Điểm thu gom rác đã xác thực có cập nhật', defaultVisible: true, zIndex: 750, popupFields: {'address': 'Địa chỉ', 'ward': 'Phường', 'street': 'Đường', 'area': 'Khu vực'} },
-        { id: 'wmsDiemthugom3Layer', wmsName: 'qlrac:contracts_3', displayName: 'Điểm thu gom rác chưa xác thực', defaultVisible: true, zIndex: 750, popupFields: {'address': 'Địa chỉ', 'ward': 'Phường', 'street': 'Đường', 'area': 'Khu vực'} }, 
+        { id: 'wmsDiemthugom1Layer', wmsName: 'qlrac:contracts_1', displayName: 'Điểm thu gom đã xác thực không cập nhật', defaultVisible: true, zIndex: 750, popupFields: {'address': 'Địa chỉ', 'ward': 'Phường', 'street': 'Đường', 'area': 'Khu vực'} },
+        { id: 'wmsDiemthugom2Layer', wmsName: 'qlrac:contracts_2', displayName: 'Điểm thu gom đã xác thực có cập nhật', defaultVisible: true, zIndex: 750, popupFields: {'address': 'Địa chỉ', 'ward': 'Phường', 'street': 'Đường', 'area': 'Khu vực'} },
+        { id: 'wmsDiemthugom3Layer', wmsName: 'qlrac:contracts_3', displayName: 'Điểm thu gom chưa xác thực', defaultVisible: true, zIndex: 750, popupFields: {'address': 'Địa chỉ', 'ward': 'Phường', 'street': 'Đường', 'area': 'Khu vực'} }, 
         { id: 'wmsKhuphoLayer', wmsName: 'qlrac:kp', displayName: 'Khu phố', defaultVisible: false, zIndex: 450, popupFields: {'ten_px_moi': 'Tên phường xã (mới)', 'TenKhuPho': 'Tên khu phố'} },  
         { id: 'wmsPhuongxaLayer', wmsName: 'qlrac:phuongxa', displayName: 'Phường xã', defaultVisible: false, zIndex: 450, popupFields: {'ten_dvhc': 'Tên đơn vị hành chính', 'quanhuyen_cu': 'Quận huyện cũ', 'sapxeptu': 'Sắp xếp từ'} },
         { id: 'wmsCHTLLayer', wmsName: 'qlrac:qlrac_chtienloi', displayName: 'Cửa hàng tiện lợi', defaultVisible: false, zIndex: 750, popupFields: {'Ten': 'Tên', 'DiaChi': 'Địa chỉ', 'PhuongXa': 'Phường xã', 'QuanHuyenTP': 'Quận huyện'} },   
