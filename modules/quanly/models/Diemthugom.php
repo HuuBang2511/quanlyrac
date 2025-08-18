@@ -60,12 +60,12 @@ class Diemthugom extends QuanlyBaseModel
     {
         return [
             'customer_id' => 'Customer ID',
-            'address' => 'Address',
-            'province' => 'Province',
-            'ward' => 'Ward',
-            'street' => 'Street',
-            'phone_number' => 'Phone Number',
-            'area' => 'Area',
+            'address' => 'Địa chỉ',
+            'province' => 'Tỉnh thành',
+            'ward' => 'Phường',
+            'street' => 'Đường',
+            'phone_number' => 'Số điện thoại',
+            'area' => 'Khu vực',
             'debt_status' => 'Debt Status',
             'total_amount' => 'Total Amount',
             'latitude' => 'Latitude',
@@ -73,7 +73,7 @@ class Diemthugom extends QuanlyBaseModel
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'geom' => 'Geom',
-            'status' => 'Status',
+            'status' => 'Loại',
         ];
     }
 }

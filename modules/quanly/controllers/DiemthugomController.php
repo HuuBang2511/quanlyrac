@@ -20,7 +20,7 @@ use yii\db\Query;
 class DiemthugomController extends Controller
 {
 
-    public $title = "Diemthugom";
+    public $title = "Điểm thu gom";
     public $layout = '@app/modules/layouts/main_khach';
 
     /**
@@ -115,19 +115,27 @@ class DiemthugomController extends Controller
     public function actionView($id)
     {
         $request = Yii::$app->request;
+
+        $loaidiemthugom = [
+            1 => 'Điểm thu gom đã xác thực không cập nhật',
+            2 => 'Điểm thu gom đã xác thực có cập nhật',
+            3 => 'Điểm thu gom chưa xác thực',
+        ];
+
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Diemthugom #".$id,
+                    'title'=> "Điểm thu gom #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
+                        'loaidiemthugom' => $loaidiemthugom,
                     ]),
-                    'footer'=> Html::button('Đóng',['class'=>'btn btn-light float-right','data-bs-dismiss'=>"modal"]).
-                            Html::a('Cập nhật',['update','id'=>$id],['class'=>'btn btn-primary float-left','role'=>'modal-remote'])
+                    'footer'=> Html::button('Đóng',['class'=>'btn btn-light float-right','data-bs-dismiss'=>"modal"])
                 ];
         }else{
             return $this->render('view', [
                 'model' => $this->findModel($id),
+                'loaidiemthugom' => $loaidiemthugom,
             ]);
         }
     }

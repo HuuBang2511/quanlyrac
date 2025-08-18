@@ -46,7 +46,7 @@ $user_id = Yii::$app->user->id;
                             <div class="content-side">
                                 <ul class="nav-main">
                                     <li class="nav-main-item">
-                                        <a class="nav-main-link" href="http://localhost/luanvany/web/user/auth/login">
+                                        <a class="nav-main-link" href="<?= Yii::$app->homeUrl ?>">
                                             <i class="nav-main-link-icon fa fa-globe"></i>
                                             <span class="nav-main-link-name">Trang chủ</span>
                                         </a>
