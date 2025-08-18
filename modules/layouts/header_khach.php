@@ -17,7 +17,7 @@
 
                     <div class="p-2">
                         <a class="dropdown-item"
-                           href="http://localhost/luanvany/web/user/auth/login">
+                           href="<?= Yii::$app->urlManager->createUrl(['user/auth/login']) ?>">
                             <i class="far fa-fw fa-user mr-1"></i> Đăng nhập
                         </a>
                         <a class="dropdown-item"

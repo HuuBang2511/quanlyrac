@@ -17,10 +17,11 @@ use yii\db\Query;
 /**
  * DiemthugomController implements the CRUD actions for Diemthugom model.
  */
-class DiemthugomController extends QuanlyBaseController
+class DiemthugomController extends Controller
 {
 
     public $title = "Diemthugom";
+    public $layout = '@app/modules/layouts/main_khach';
 
     /**
      * Lists all Diemthugom models.

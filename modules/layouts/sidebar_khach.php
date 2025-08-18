@@ -9,6 +9,8 @@ use \app\modules\APPConfig;
 $url = implode('/', [$module->id, $controller->id]);
 
 $map = APPConfig::$CONFIG['map'];
+
+$giadinh = APPConfig::$CONFIG['giadinh'];
 $user_id = Yii::$app->user->id;
 //dd(Yii::$app->user->identity->is_admin);
 //dd(\hcmgis\user\services\AuthService::can($user_id,'quanly.hocsinh.index'));
@@ -18,8 +20,8 @@ $user_id = Yii::$app->user->id;
 
     <div class="bg-gray-lighter">
         <div class="content-header bg-primary-darker">
-            <a class="font-w600 text-white tracking-wide logo-default" href="http://localhost/luanvany/web/user/auth/login">
-                <img src="https://cdn.thuvienphapluat.vn/phap-luat/2022/TD/220702/nuoc-sinh-hoat.png"
+            <a class="font-w600 text-white tracking-wide logo-default" href="<?= Yii::$app->homeUrl ?>">
+                <img src="<?= Yii::$app->homeUrl ?>resources/images/logo_qlrac.png"
                      alt="logo"
                      class="logo-default py-2">
             </a>
@@ -48,6 +50,27 @@ $user_id = Yii::$app->user->id;
                                             <i class="nav-main-link-icon fa fa-globe"></i>
                                             <span class="nav-main-link-name">Trang chủ</span>
                                         </a>
+                                    </li>
+
+                                    <li class="nav-main-heading">Thống kê</li>
+                                    <li class="nav-main-item" id="giadinh">
+                                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+                                           aria-haspopup="true" aria-expanded="true" href="#">
+                                            <i class="nav-main-link-icon fa fa-list"></i>
+                                            <span class="nav-main-link-name">Thống kê theo không gian</span>
+                                        </a>
+                                        <ul class="nav-main-submenu">
+                                            <?php foreach ($giadinh as $navchild) : ?>
+                                               
+                                                    <li class="nav-main-item <?= ($url == $navchild['url']) ? 'active' : '' ?>">
+                                                        <a class="nav-main-link"
+                                                           href="<?= Yii::$app->urlManager->createUrl([$navchild['url']]) ?>">
+                                                            <span class="nav-main-link-name"><?= $navchild['name'] ?></span>
+                                                        </a>
+                                                    </li>
+                                                
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </li>
 
                                     <li class="nav-main-heading">Map</li>

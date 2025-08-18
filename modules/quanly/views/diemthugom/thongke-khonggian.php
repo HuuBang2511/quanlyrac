@@ -115,7 +115,7 @@ L.geoJSON(<?= $geojson?>, {
         return L.marker(latlng, {
             icon: new L.icon({
                 iconUrl: '<?= Yii::$app->homeUrl ?>resources/images/icons8-waste-100.png',
-                iconSize: [50, 50],
+                iconSize: [35, 35],
                 iconAnchor: [0, 15],
                 popupAnchor: [15, 0],
             })

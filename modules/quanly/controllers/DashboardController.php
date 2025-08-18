@@ -6,10 +6,12 @@ namespace app\modules\quanly\controllers;
 
 use app\modules\quanly\base\QuanlyBaseController;
 use app\modules\quanly\models\Diemthugom;
+use yii\web\Controller;
 use Yii;
 
-class DashboardController extends QuanlyBaseController
+class DashboardController extends Controller
 {
+    public $layout = '@app/modules/layouts/main_khach';
     public function actionIndex()
     {
         $count['diemthugom1'] = Diemthugom::find()->where(['status' => 1])->andWhere('geom is not null')->count();

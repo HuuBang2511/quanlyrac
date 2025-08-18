@@ -147,7 +147,7 @@ $config = [
                 'allow' => true,
             ],
             [
-                'controllers' => ['quanly/map'],
+                'controllers' => ['quanly/map', 'quanly/dashboard', 'quanly/diemthugom/thongke-khonggian', 'quanly/diemthugom/view'],
                 'allow' => true,
 //                'actions' => ['index'], // Chỉ cho phép truy cập action index trong controller API
                 'roles' => ['?'], // Cho phép truy cập không cần đăng nhập

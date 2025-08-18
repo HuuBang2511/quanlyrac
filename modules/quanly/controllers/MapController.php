@@ -8,7 +8,7 @@ use app\modules\quanly\base\QuanlyBaseController;
 use yii\web\Controller;
 use yii;
 
-class MapController extends QuanlyBaseController
+class MapController extends Controller
 {
     public $layout = '@app/views/layouts/map/main';
 
