@@ -1,199 +1,113 @@
 <?php
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use app\widgets\echarts\EChartAsset;
-use yii\bootstrap5\Modal;
+use app\modules\assets\DashboardAsset;
+use yii\helpers\Json;
 
-EChartAsset::register($this);
+DashboardAsset::register($this);
+$this->title = 'Bảng điều khiển chuyên nghiệp';
 
-// Đăng ký tài nguyên
-$this->registerJsFile('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', ['position' => \yii\web\View::POS_HEAD]);
-$this->registerCssFile('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
-$this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
-$this->registerJsFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', ['position' => \yii\web\View::POS_HEAD]);
-$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-$this->registerJsFile('https://cdn.jsdelivr.net/npm/chart.js', ['position' => \yii\web\View::POS_HEAD]);
+// CHUẨN BỊ DỮ LIỆU MẪU (BẠN SẼ THAY BẰNG DỮ LIỆU THẬT TỪ CONTROLLER)
+$totalPoints = $count['diemthugom1'] + $count['diemthugom2'] + $count['diemthugom3'];
+$recentActivities = [
+    ['name' => 'Nguyễn Văn A', 'ward' => 'Phường Bến Nghé', 'status' => 'Đã xác thực', 'type' => 'success'],
+    ['name' => 'Trần Thị B', 'ward' => 'Phường Đa Kao', 'status' => 'Chưa xác thực', 'type' => 'warning'],
+    ['name' => 'Lê Văn C', 'ward' => 'Phường Tân Định', 'status' => 'Đã xác thực', 'type' => 'success'],
+    ['name' => 'Phạm Thị D', 'ward' => 'Phường Cầu Ông Lãnh', 'status' => 'Đã xác thực', 'type' => 'success'],
+];
+// Dữ liệu cho các biểu đồ sparkline mini
+$sparklineData = [
+    'series1' => [5, 8, 6, 10, 7, 12, 9],
+    'series2' => [15, 12, 18, 14, 20, 17, 22],
+    'series3' => [4, 3, 5, 2, 6, 4, 5],
+    'series4' => [30, 32, 28, 35, 33, 38, 36]
+];
 ?>
 
-<style>
-.dashboard-container {
-    background-color: #f8f9fa;
-    padding: 20px;
-    min-height: 100vh;
-}
-
-.block-themed {
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.block-themed:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.chart-container {
-    height: 300px;
-    width: 100%;
-}
-
-#map {
-    height: 400px;
-    border-radius: 10px;
-}
-
-.chartStyle {
-    position: relative;
-    height: 600px;
-    overflow: hidden;
-}
-
-#chart-none{
-    font-family: Roboto !important;
-}
-</style>
-
-<div class="dashboard-container">
+<div class="dashboard-pro container-fluid">
     <div class="row g-4 mb-4">
-        <div class="col-sm-6 col-xl-4">
-            <div class="block block-themed stat-card text-center">
-                <div class="block-header bg-primary-dark d-flex align-items-center justify-content-center">
-                    <i class="fas fa-gauge text-white fa-2x me-2"></i>
-                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom đã xác thực không cập nhật</h3>
+        <div class="col-lg-3 col-md-6">
+            <div class="glass-card kpi-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <p class="kpi-label">Đã xác thực (K)</p>
+                        <h2 class="kpi-number"><?= $count['diemthugom1'] ?></h2>
+                    </div>
+                    <div class="kpi-icon" style="background-color: var(--primary-color);"><i class='bx bxs-file-check'></i></div>
                 </div>
-                <div class="block-content p-4">
-                    <div class="fs-1 fw-bold text-primary"><?= $count['diemthugom1'] ?></div>
-                    <a href="#"
-                        class="btn btn-outline-primary mt-2">Xem chi tiết</a>
-                </div>
+                <div id="sparkline1" class="kpi-sparkline"></div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-4">
-            <div class="block block-themed stat-card text-center">
-                <div class="block-header bg-success d-flex align-items-center justify-content-center">
-                    <i class="fas fa-gauge text-white fa-2x me-2"></i>
-                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom đã xác thực có cập nhật</h3>
+        <div class="col-lg-3 col-md-6">
+            <div class="glass-card kpi-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <p class="kpi-label">Đã xác thực (C)</p>
+                        <h2 class="kpi-number text-success"><?= $count['diemthugom2'] ?></h2>
+                    </div>
+                    <div class="kpi-icon bg-success"><i class='bx bxs-file-plus'></i></div>
                 </div>
-                <div class="block-content p-4">
-                    <div class="fs-1 fw-bold text-success"><?= $count['diemthugom2'] ?></div>
-                    <a href="#"
-                        class="btn btn-outline-success mt-2">Xem chi tiết</a>
-                </div>
+                <div id="sparkline2" class="kpi-sparkline"></div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-4">
-            <div class="block block-themed stat-card text-center">
-                <div class="block-header bg-warning d-flex align-items-center justify-content-center">
-                    <i class="fas fa-gauge text-white fa-2x me-2"></i>
-                    <h3 class="block-title fs-4 fw-bold text-white">Điểm thu gom chưa xác thực</h3>
+        <div class="col-lg-3 col-md-6">
+            <div class="glass-card kpi-card">
+                 <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <p class="kpi-label">Chưa xác thực</p>
+                        <h2 class="kpi-number text-warning"><?= $count['diemthugom3'] ?></h2>
+                    </div>
+                    <div class="kpi-icon bg-warning"><i class='bx bxs-file-import'></i></div>
                 </div>
-                <div class="block-content p-4">
-                    <div class="fs-1 fw-bold text-warning"><?= $count['diemthugom3'] ?></div>
-                    <a href="#"
-                        class="btn btn-outline-warning mt-2">Xem chi tiết</a>
+                <div id="sparkline3" class="kpi-sparkline"></div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="glass-card kpi-card">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <p class="kpi-label">Tổng số điểm</p>
+                        <h2 class="kpi-number text-danger"><?= $totalPoints ?></h2>
+                    </div>
+                    <div class="kpi-icon bg-danger"><i class='bx bxs-collection'></i></div>
                 </div>
+                <div id="sparkline4" class="kpi-sparkline"></div>
             </div>
         </div>
     </div>
-    <div class="block block-themed">
-        <div class="block-header">
-            <h3>Thống kê biểu đồ</h3>
-        </div>
-        <div class="block-content">
-            <div class="row">
-                <div class="col-lg-6">
-                    <?php if(isset($statistic['phuongxa']) && count($statistic['phuongxa']) > 0): ?>
-                        <div id="piePhuongxa" class="chartStyle"></div>
-                    <?php else: ?>
-                    <div class="text-center" id="chart-none">
-                        <h4>Không có dữ liệu !</h4>
-                    </div>
-                    <?php endif; ?>
-                </div>
-                <div class="col-lg-6">
-                    <?php if(isset($statistic['loaidiemthugom']) && count($statistic['loaidiemthugom']) > 0): ?>
-                        <div id="pieLoaidiemthugom" class="chartStyle"></div>
-                    <?php else: ?>
-                    <div class="text-center" id="chart-none">
-                        <h4>Không có dữ liệu !</h4>
-                    </div>
-                    <?php endif; ?>
-                </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-lg-8">
+            <div class="glass-card">
+                <h5 class="card-title mb-3">Hoạt động xác thực 7 ngày qua</h5>
+                <div id="chart7Days" class="chart-container"></div>
             </div>
         </div>
-    </div>  
+        <div class="col-lg-4">
+            <div class="glass-card">
+                <h5 class="card-title mb-3">Tỷ lệ các loại điểm</h5>
+                <div id="chartLoaiDiem" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="glass-card">
+                <h5 class="card-title mb-3">Thống kê theo Phường/Xã</h5>
+                <div id="chartPhuongXa" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<script type="module">
-    $(document).ready(function () {
-        <?php if(isset($statistic['phuongxa']) && count($statistic['phuongxa']) > 0): ?>
-        initPieChart('piePhuongxa', 'Thống kê điểm thu gom theo phường', null, <?= json_encode($statistic['phuongxa'])?>,'Điểm thu gom')
-        <?php endif; ?>
-        <?php if(isset($statistic['loaidiemthugom']) && count($statistic['loaidiemthugom']) > 0): ?>
-        initPieChart('pieLoaidiemthugom', 'Thống kê điểm thu gom theo loại', null, <?= json_encode($statistic['loaidiemthugom'])?>,'Điểm thu gom')
-        <?php endif; ?>
-    });
+<?php
+// Truyền dữ liệu từ PHP vào biến JavaScript để file dashboard-pro.js sử dụng
+$jsData = [
+    'sparkline' => $sparklineData,
+    'charts' => $statistic
+];
 
-    function initPieChart(id, title, label, data, unit) {
-        var chartDom = document.getElementById(id);
-        var myChart = echarts.init(chartDom);
-        var option;
-
-        option = {
-            title: {
-                text: title,
-                left: 'center',
-                textStyle: {
-                    fontFamily: 'Roboto'
-                }
-            },
-            textStyle: {
-                fontFamily: 'Roboto',
-            },
-            tooltip: {
-                trigger: 'item',
-                formatter: '{a} <br/> <b>{b}</b>:  {c} ({d}%)',
-                textStyle: {
-                    fontFamily: 'Roboto'
-                }
-            },
-            label: {
-            formatter: '{b}:{c}',
-            position: 'inside',
-            textStyle: {
-                fontFamily: 'Roboto',
-                fontSize: '8px'
-            }
-        },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                top: 'bottom',
-            },
-            series: [
-                {
-                    name: unit,
-                    type: 'pie',
-                    radius: '50%',
-                    data: data,
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
-
-        option && myChart.setOption(option);
-    }
-</script>
-
-
-
-
-
+$this->registerJs(
+    'const dashboardProData = ' . Json::encode($jsData) . ';',
+    \yii\web\View::POS_HEAD
+);
+?>

@@ -1,8 +1,8 @@
 <?php
 
 namespace app\modules\quanly\models;
-use app\modules\quanly\base\QuanlyBaseModel;
 
+use app\modules\quanly\base\QuanlyBaseModel;
 use Yii;
 
 /**
@@ -23,6 +23,8 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $geom
  * @property int|null $status
+ * @property string|null $khach_hang
+ * @property string|null $cua_hang_cong_ty
  */
 class Diemthugom extends QuanlyBaseModel
 {
@@ -48,7 +50,7 @@ class Diemthugom extends QuanlyBaseModel
             [['status'], 'integer'],
             [['customer_id'], 'string', 'max' => 50],
             [['province', 'ward', 'phone_number'], 'string', 'max' => 100],
-            [['street', 'area', 'debt_status'], 'string', 'max' => 255],
+            [['street', 'area', 'debt_status', 'khach_hang', 'cua_hang_cong_ty'], 'string', 'max' => 255],
             [['customer_id'], 'unique'],
         ];
     }
@@ -59,21 +61,24 @@ class Diemthugom extends QuanlyBaseModel
     public function attributeLabels()
     {
         return [
-            'customer_id' => 'Customer ID',
+            'customer_id' => 'Mã khách hàng',
             'address' => 'Địa chỉ',
             'province' => 'Tỉnh thành',
             'ward' => 'Phường',
             'street' => 'Đường',
             'phone_number' => 'Số điện thoại',
             'area' => 'Khu vực',
-            'debt_status' => 'Debt Status',
-            'total_amount' => 'Total Amount',
-            'latitude' => 'Latitude',
-            'longitude' => 'Longitude',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'debt_status' => 'Tình trạng nợ',
+            'total_amount' => 'Tổng tiền',
+            'latitude' => 'Vĩ độ',
+            'longitude' => 'Kinh độ',
+            'created_at' => 'Ngày tạo',
+            'updated_at' => 'Ngày cập nhật',
             'geom' => 'Geom',
             'status' => 'Loại',
+            // 'tinh_trang' => 'Tình trạng',
+            'khach_hang' => 'Khách hàng',
+            'cua_hang_cong_ty' => 'Cửa hàng/Công ty',
         ];
     }
 }
