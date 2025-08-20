@@ -278,7 +278,7 @@ $this->params['hideHero'] = true;
     <!-- Loại bỏ class 'hidden' ban đầu để JS kiểm soát hoàn toàn -->
     <div id="tabs">
         <div class="tabs-header">
-            <a href="<?= Yii::$app->homeUrl ?>" target="_blank">
+            <a href="<?= Yii::$app->homeUrl ?>">
                 <img src="<?= Yii::$app->homeUrl ?>resources/images/logo_map.jpg" alt="Logo">
             </a>
             <button id="back-to-map-mobile-btn"></button>
