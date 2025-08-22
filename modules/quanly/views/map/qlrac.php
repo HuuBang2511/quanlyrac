@@ -625,89 +625,89 @@ $this->params['hideHero'] = true;
                     'sapxeptu': 'Sắp xếp từ'
                 }
             },
-            {
-                id: 'wmsCHTLLayer',
-                wmsName: 'qlrac:qlrac_chtienloi',
-                displayName: 'Cửa hàng tiện lợi',
-                defaultVisible: false,
-                zIndex: 750,
-                popupFields: {
-                    'Ten': 'Tên',
-                    'DiaChi': 'Địa chỉ',
-                    'PhuongXa': 'Phường xã',
-                    'QuanHuyenTP': 'Quận huyện'
-                }
-            },
-            {
-                id: 'wmsNhathuocLayer',
-                wmsName: 'qlrac:qlrac_nhathuoc',
-                displayName: 'Nhà thuốc',
-                defaultVisible: false,
-                zIndex: 750,
-                popupFields: {
-                    'Ten': 'Tên',
-                    'SoNha': 'Số nhà',
-                    'TenDuong': 'Tên đường',
-                    'PhuongXa': 'Phường xã',
-                    'QuanHuyenT': 'Quận huyện'
-                }
-            },
-            {
-                id: 'wmsDuongLayer',
-                wmsName: 'qlrac:qlrac_road',
-                displayName: 'Đường',
-                defaultVisible: false,
-                zIndex: 450,
-                popupFields: {
-                    'name': 'Tên'
-                }
-            },
-            {
-                id: 'wmsSieuthiLayer',
-                wmsName: 'qlrac:qlrac_sieuthi',
-                displayName: 'Siêu thị',
-                defaultVisible: false,
-                zIndex: 750,
-                popupFields: {
-                    'Ten': 'Tên',
-                    'DiaChi': 'Địa chỉ',
-                    'PhuongXa': 'Phường xã',
-                    'QuanHuyenTP': 'Quận huyện'
-                }
-            },
-            {
-                id: 'wmsThuyheLayer',
-                wmsName: 'qlrac:qlrac_thuyhe',
-                displayName: 'Thủy hệ',
-                defaultVisible: false,
-                zIndex: 450,
-                popupFields: {
-                    'name': 'Tên'
-                }
-            },
-            {
-                id: 'wmsTongiaoLayer',
-                wmsName: 'qlrac:qlrac_tongiao',
-                displayName: 'Tôn giáo',
-                defaultVisible: false,
-                zIndex: 750,
-                popupFields: {
-                    'name': 'Tên'
-                }
-            },
-            {
-                id: 'wmsTTTMLayer',
-                wmsName: 'qlrac:qlrac_tttm',
-                displayName: 'Trung tâm thương mại',
-                defaultVisible: false,
-                zIndex: 750,
-                popupFields: {
-                    'Ten': 'Tên',
-                    'DiaChi': 'Địa chỉ',
-                    'PhuongXa': 'Phường xã',
-                    'QuanHuyenTP': 'Quận huyện'
-                }
-            },
+            // {
+            //     id: 'wmsCHTLLayer',
+            //     wmsName: 'qlrac:qlrac_chtienloi',
+            //     displayName: 'Cửa hàng tiện lợi',
+            //     defaultVisible: false,
+            //     zIndex: 750,
+            //     popupFields: {
+            //         'Ten': 'Tên',
+            //         'DiaChi': 'Địa chỉ',
+            //         'PhuongXa': 'Phường xã',
+            //         'QuanHuyenTP': 'Quận huyện'
+            //     }
+            // },
+            // {
+            //     id: 'wmsNhathuocLayer',
+            //     wmsName: 'qlrac:qlrac_nhathuoc',
+            //     displayName: 'Nhà thuốc',
+            //     defaultVisible: false,
+            //     zIndex: 750,
+            //     popupFields: {
+            //         'Ten': 'Tên',
+            //         'SoNha': 'Số nhà',
+            //         'TenDuong': 'Tên đường',
+            //         'PhuongXa': 'Phường xã',
+            //         'QuanHuyenT': 'Quận huyện'
+            //     }
+            // },
+            // {
+            //     id: 'wmsDuongLayer',
+            //     wmsName: 'qlrac:qlrac_road',
+            //     displayName: 'Đường',
+            //     defaultVisible: false,
+            //     zIndex: 450,
+            //     popupFields: {
+            //         'name': 'Tên'
+            //     }
+            // },
+            // {
+            //     id: 'wmsSieuthiLayer',
+            //     wmsName: 'qlrac:qlrac_sieuthi',
+            //     displayName: 'Siêu thị',
+            //     defaultVisible: false,
+            //     zIndex: 750,
+            //     popupFields: {
+            //         'Ten': 'Tên',
+            //         'DiaChi': 'Địa chỉ',
+            //         'PhuongXa': 'Phường xã',
+            //         'QuanHuyenTP': 'Quận huyện'
+            //     }
+            // },
+            // {
+            //     id: 'wmsThuyheLayer',
+            //     wmsName: 'qlrac:qlrac_thuyhe',
+            //     displayName: 'Thủy hệ',
+            //     defaultVisible: false,
+            //     zIndex: 450,
+            //     popupFields: {
+            //         'name': 'Tên'
+            //     }
+            // },
+            // {
+            //     id: 'wmsTongiaoLayer',
+            //     wmsName: 'qlrac:qlrac_tongiao',
+            //     displayName: 'Tôn giáo',
+            //     defaultVisible: false,
+            //     zIndex: 750,
+            //     popupFields: {
+            //         'name': 'Tên'
+            //     }
+            // },
+            // {
+            //     id: 'wmsTTTMLayer',
+            //     wmsName: 'qlrac:qlrac_tttm',
+            //     displayName: 'Trung tâm thương mại',
+            //     defaultVisible: false,
+            //     zIndex: 750,
+            //     popupFields: {
+            //         'Ten': 'Tên',
+            //         'DiaChi': 'Địa chỉ',
+            //         'PhuongXa': 'Phường xã',
+            //         'QuanHuyenTP': 'Quận huyện'
+            //     }
+            // },
         ];
 
         // --- MAP INITIALIZATION ---
