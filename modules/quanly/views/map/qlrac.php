@@ -517,8 +517,8 @@ $this->params['hideHero'] = true;
                     'loai_rac_thai': 'Loại rác thải',
                     'doi_tuong': 'Đối tượng',
                     'nhan_vien': 'Nhân viên',
-                    'tinh_trang': 'Tình trạng hợp đồng',
-                    'trang_thai': 'Trạng thái',
+                    // 'tinh_trang': 'Tình trạng hợp đồng',
+                    // 'trang_thai': 'Trạng thái',
                 }
             },
             {
@@ -544,8 +544,8 @@ $this->params['hideHero'] = true;
                     'loai_rac_thai': 'Loại rác thải',
                     'doi_tuong': 'Đối tượng',
                     'nhan_vien': 'Nhân viên',
-                    'tinh_trang': 'Tình trạng hợp đồng',
-                    'trang_thai': 'Trạng thái',
+                    // 'tinh_trang': 'Tình trạng hợp đồng',
+                    // 'trang_thai': 'Trạng thái',
                 }
             },
             {
@@ -571,8 +571,8 @@ $this->params['hideHero'] = true;
                     'loai_rac_thai': 'Loại rác thải',
                     'doi_tuong': 'Đối tượng',
                     'nhan_vien': 'Nhân viên',
-                    'tinh_trang': 'Tình trạng hợp đồng',
-                    'trang_thai': 'Trạng thái',
+                    // 'tinh_trang': 'Tình trạng hợp đồng',
+                    // 'trang_thai': 'Trạng thái',
                 }
             },
             {
@@ -598,8 +598,8 @@ $this->params['hideHero'] = true;
                     'loai_rac_thai': 'Loại rác thải',
                     'doi_tuong': 'Đối tượng',
                     'nhan_vien': 'Nhân viên',
-                    'tinh_trang': 'Tình trạng hợp đồng',
-                    'trang_thai': 'Trạng thái',
+                    // 'tinh_trang': 'Tình trạng hợp đồng',
+                    // 'trang_thai': 'Trạng thái',
                 }
             },
             {
