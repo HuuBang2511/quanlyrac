@@ -499,7 +499,7 @@ $this->params['hideHero'] = true;
                 wmsName: 'qlrac:contracts_3',
                 displayName: 'Điểm thu gom chưa xác thực',
                 isFilterable: true, // Đánh dấu lớp này có thể lọc
-                defaultVisible: true,
+                defaultVisible: false,
                 zIndex: 750,
                 popupFields: {
                     'customer_id': 'Mã khách hàng',
