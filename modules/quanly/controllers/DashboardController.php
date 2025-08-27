@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $countsByStatusRaw = Diemthugom::find()
             ->select(['status', 'COUNT(*) as total'])
             ->where(['status' => ['1', '2', '3']])
-            // ->andWhere('geom IS NOT NULL')
+            ->andWhere('geom IS NOT NULL')
             ->groupBy('status')
             ->asArray()
             ->all();
